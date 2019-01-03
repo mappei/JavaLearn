@@ -2,8 +2,8 @@ package list;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 public class ArrayListTest {
 
@@ -36,9 +36,12 @@ public class ArrayListTest {
         System.out.println(list.toString());
         System.out.println(list.size());*/
 
-
-
-        LinkedList<Integer> link = new LinkedList<>();
+        //ArrayList 和 linkedList 做插入删除的速度比较
+        //1. Add(E e): 两者用时几乎一样，甚至ArrayList要快于LinkedList,
+        // 因为增加数组只在最后插入数据长度+1，没有任何元素位移；链表操作需要修改指针的只想需要花费时间
+        //2. Add(int index, E e): 链表的插入操作要快于数组的操作
+        //因为当列表中数据很多的情况下，从中间插入数据，链表只需要修改引用的只想，而数组后面的元素都要发生位置移动从而时间慢
+        /*LinkedList<Integer> link = new LinkedList<>();
         for (int i = 1; i < 10000000; i++) {
             link.add(i);
         }
@@ -59,7 +62,47 @@ public class ArrayListTest {
             array.add(5002,1);
         }
         long arrayAfter = System.currentTimeMillis();
-        System.out.println("array:" + (arrayAfter - arrayBefore));
+        System.out.println("array:" + (arrayAfter - arrayBefore));*/
+
+        //验证 ArrayList 中hugeCapacity(int minCapacity) 合适参数小于0
+        //System.out.println(biggerThanMax(Integer.MAX_VALUE));
+
+
+        //比较 for循环 与 System.arrayCopy 的效率
+        /*ArrayList<Integer> list = new ArrayList();
+        for (int i = 0; i < 100000; i++) {
+            list.add(123);
+        }
+        long arrBefore = System.currentTimeMillis();
+        move(list);
+        long arrAfter = System.currentTimeMillis();
+        System.out.println("for : " + (arrAfter - arrBefore));
+
+        long copyBefore = System.currentTimeMillis();
+        System.arraycopy(list, 0, list, 1, list.size());
+        long copyAfter = System.currentTimeMillis();
+        System.out.println("arrayCopy: " + (copyAfter - copyBefore));*/
+
+
+
+
+    }
+
+    /**
+     * 验证对整数类型的最大值做加法，返回值为负数
+     *
+     * @param max Integer.MAX_VALUE
+     * @return
+     */
+    public static int biggerThanMax(int max) {
+        return max + 10;
+    }
+
+    public static void move(ArrayList<Integer> list) {
+        ArrayList<Integer> newList = new ArrayList<>(list.size());
+        for (int i = 0; i < list.size(); i++) {
+            newList.add(i, list.get(i));
+        }
     }
 
 }

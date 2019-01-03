@@ -127,6 +127,7 @@ public class ArrayList extends AbstractList implements List, Cloneable, RandomAc
 
     private void grow(int minCapacity) {
         int oldCapacity = elementData.length;
+        //此处使用位移运算符是因为位运算符是计算机能都读懂的最直观的语言
         int newCapacity = oldCapacity + oldCapacity >> 1;
         if (newCapacity < minCapacity)
             newCapacity = minCapacity;
@@ -136,6 +137,7 @@ public class ArrayList extends AbstractList implements List, Cloneable, RandomAc
     }
 
     private int hugeCapacity(int minCapacity) {
+        //当int类型超过MAX_VALUE,则会变为负数，表示已经超过int类型的范围（正负21亿）
         if (minCapacity < 0) {
             throw new IllegalArgumentException();
         }
