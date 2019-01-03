@@ -1,10 +1,11 @@
 package list;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Dictionary;
 import java.util.ListIterator;
 
+/**
+ * 双链表
+ */
 public class LinkedList {
 
     public Node first;
@@ -134,6 +135,27 @@ public class LinkedList {
         modCount++;
     }
 
+    public void chengeItemPosition(int index) {
+        Node nodePrev = getNode(index);
+        if (size == 2) {
+            first = last;
+            first.next = last.prev;
+            first.prev = null;
+            last = nodePrev;
+            last.next = null;
+            last.prev = first;
+        } else if (index == 0) {
+            Node node = getNode(1);
+            first.next = getNode(2);
+            first.prev = node;
+            node.next = first;
+            node.prev = null;
+            first = node;
+        } else if (index == size - 2) {
+        } else {
+        }
+    }
+
     private void checkIndexGT(int index) {
         if (index < 0 || index > size)
             throw new IndexOutOfBoundsException();
@@ -225,16 +247,24 @@ public class LinkedList {
         System.out.println("size : " + (list1.size()));
         System.out.println(list1.toString());*/
 
-        java.util.LinkedList list1 = new java.util.LinkedList();
+        /*java.util.LinkedList list1 = new java.util.LinkedList();
         list1.add(1);
         list1.add(2);
-        list1.add(3);
+        list1.add(3);*/
         /*java.util.LinkedList list2 = new java.util.LinkedList();
         list2.add(222);
         list1.addAll(1, list2);
         System.out.println(list1);*/
-        ListIterator listIterator = list1.listIterator();
-        listIterator.remove();
+        /*ListIterator listIterator = list1.listIterator();
+        listIterator.remove();*/
+
+        LinkedList list1 = new LinkedList();
+        list1.add(1);
+        list1.add(3);
+        list1.add(2);
+        System.out.println(list1.toString());
+        list1.chengeItemPosition(0);
+        System.out.println(list1.toString());
 
     }
 
