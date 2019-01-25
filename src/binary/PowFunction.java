@@ -1,4 +1,4 @@
-package BinarySomething;
+package binary;
 
 public class PowFunction {
 
@@ -22,7 +22,10 @@ public class PowFunction {
 
     /**
      * 使用位运算符转换为方便计算机理解的二进制语言
-     * 通过规律我们可以发现：只要是符合幂函数的数
+     * 通过规律我们可以发现：
+     * 2^2   = 0100 / 2^3   = 1000 / 2^4   = 10000
+     * 2^2-1 = 0011 / 2^3-1 = 0111 / 2^4-1 = 01111
+     * 两者取并集为0
      * @param num
      * @return
      */
